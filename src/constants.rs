@@ -47,6 +47,8 @@ make_enum!(
 /// <https://datatracker.ietf.org/doc/html/rfc1035#section-4.1.1>
 pub enum Flags {
     RECURSION_DESIRED = 1 << 8,
+    MESSAGE_REQUEST = 0 << 0,
+    MESSAGE_RESPONSE = 1 << 0,
 }
 
 /// <https://www.iana.org/domains/root/servers>

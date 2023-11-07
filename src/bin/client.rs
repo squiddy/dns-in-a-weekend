@@ -25,7 +25,7 @@ fn send_query(destination: Ipv4Addr, domain_name: &str, record_type: Type) -> Re
     let mut query = Message {
         header: Header {
             id: rand::random::<u16>(),
-            flags: 0,
+            flags: Flags::MESSAGE_REQUEST as u16,
             num_questions: 0,
             num_answers: 0,
             num_authorities: 0,
@@ -128,7 +128,7 @@ fn lookup_domain(domain_name: &str) -> Result<Ipv4Addr> {
     let mut query = Message {
         header: Header {
             id: rand::random::<u16>(),
-            flags: Flags::RECURSION_DESIRED as u16,
+            flags: Flags::MESSAGE_REQUEST as u16 | Flags::RECURSION_DESIRED as u16,
             num_questions: 0,
             num_answers: 0,
             num_authorities: 0,

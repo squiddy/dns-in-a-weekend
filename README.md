@@ -14,5 +14,14 @@ look into in the future.
 
 - [ ] support ipv6
 - [ ] properly handle CNAMEs in `resolve`
-- [ ] split code into lib and binary
+- [X] split code into lib and binary
 - [ ] make this a DNS server
+
+## Testing
+
+### Server
+
+Pretty straight forward when using `dig`. Because we do not support EDNS, dig
+needs to be instructed not to send a EDNS query with `+noedns` like this:
+
+    $ dig @127.0.0.1 +noedns google.com IN A
