@@ -1,13 +1,8 @@
 use anyhow::Result;
-use constants::{Class, Flags, Type};
+use dns_in_a_weekend::constants::ROOT_SERVERS_V4;
+use dns_in_a_weekend::constants::{Class, Flags, Type};
+use dns_in_a_weekend::wire::{Header, Message, Question};
 use std::net::{Ipv4Addr, UdpSocket};
-use wire::{Header, Message, Question};
-
-use crate::constants::ROOT_SERVERS_V4;
-
-mod constants;
-mod domain_name;
-mod wire;
 
 /// Returns response after querying a server for a specific record. This
 /// typically is not used directly.
