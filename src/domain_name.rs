@@ -3,6 +3,14 @@
 
 use anyhow::Result;
 
+pub fn encode_name(buffer: &mut bytebuffer::ByteBuffer, name: &str) {
+    for p in name.split('.') {
+        buffer.write_u8(p.len() as u8);
+        buffer.write_bytes(p.as_bytes());
+    }
+    buffer.write_u8(0);
+}
+
 pub fn decode_name(reader: &mut bytebuffer::ByteReader) -> Result<String> {
     let mut parts: Vec<String> = vec![];
     loop {

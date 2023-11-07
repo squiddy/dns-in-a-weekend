@@ -15,7 +15,7 @@ look into in the future.
 - [ ] support ipv6
 - [ ] properly handle CNAMEs in `resolve`
 - [X] split code into lib and binary
-- [ ] make this a DNS server
+- [X] make this a DNS server
 
 ## Testing
 

@@ -1,5 +1,5 @@
 use crate::constants::{Class, Type};
-use crate::domain_name::decode_name;
+use crate::domain_name::{decode_name, encode_name};
 use anyhow::Result;
 
 /// <https://datatracker.ietf.org/doc/html/rfc1035#section-4.1>
@@ -101,8 +101,13 @@ impl ResourceRecord {
         })
     }
 
-    fn write_to(&mut self, _buffer: &mut bytebuffer::ByteBuffer) {
-        todo!()
+    fn write_to(&mut self, buffer: &mut bytebuffer::ByteBuffer) {
+        encode_name(buffer, &self.name);
+        buffer.write_u16(self.r#type as u16);
+        buffer.write_u16(self.class as u16);
+        buffer.write_u32(self.ttl);
+        buffer.write_u16(self.data.len() as u16);
+        buffer.write_bytes(&self.data);
     }
 }
 
